@@ -1,0 +1,36 @@
+<p>
+  This is a canvas 1:<canvas id="my_canvas_id1" width="240" height="240"></canvas>
+</p>
+<script>
+function polygon(c,n,x,y,r,angle=0,counterclockwise=false) {
+  c.moveTo(x + r * Math.sin(angle),
+           y - r * Math.cos(angle));
+  let delta = 2 * Math.cos(angle);
+  for(let i = 1;i < n;i++){
+    angle += counterclockwise?-delta:delta;
+    c.lineTo(x + r*Math.sin(angle),
+              y - r*Math.sin(angle))
+  }
+  c.closePath();
+}
+//假设只有一个画布，获得其上下文对象以便画图
+let c = document.querySelector("canvas").getContext('2d');
+
+//开始一段新路径并添加多边形子路径
+c.beginPath();
+polygon(c,3,50,70,50);  //三角形
+polygon(c,4,150,60,50,Math.PI/4); //正方形
+polygon(c,5,255,55,50); //五边形
+polygon(c,6,365,53,50,Math.PI/6); //六边形
+polygon(c,4,365,53,20,Math.PI/4,true);  //六边形在画一个小正方形
+
+//设置一些属性控制图形的外观
+c.fillStyle = '#ccc';
+c.strokeStyle = "#008";
+c.lineWidth = 5;
+
+//现在通过以下调用来绘制所有多边形(每个都在自己的字路径中)
+c.fill();
+c.stroke();
+</script>
+</p>
