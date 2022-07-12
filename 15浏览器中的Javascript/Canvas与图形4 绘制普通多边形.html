@@ -1,15 +1,17 @@
 <p>
-  This is a canvas 1:<canvas id="my_canvas_id1" width="240" height="240"></canvas>
+  This is a canvas 1:<canvas id="my_canvas_id1" width="500" height="240"></canvas>
 </p>
 <script>
+
+  //定义n边
 function polygon(c,n,x,y,r,angle=0,counterclockwise=false) {
   c.moveTo(x + r * Math.sin(angle),
            y - r * Math.cos(angle));
-  let delta = 2 * Math.cos(angle);
+  let delta = 2 * Math.PI/n;
   for(let i = 1;i < n;i++){
     angle += counterclockwise?-delta:delta;
     c.lineTo(x + r*Math.sin(angle),
-              y - r*Math.sin(angle))
+              y - r*Math.cos(angle))
   }
   c.closePath();
 }

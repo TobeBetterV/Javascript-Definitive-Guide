@@ -1,0 +1,25 @@
+<p>
+  This is a canvas 1:<canvas id="my_canvas_id1" width="500" height="240" colorManagement shadowMap camera={{position:[0,2,10],fov:70}}></canvas>
+</p>
+  
+<script>
+    //
+    let canvas = document.querySelector("#my_canvas_id1"); //取得画布元素
+    let c = canvas.getContext("2d"); //取得2D绘图上下文
+    c.lineWidth = 10;
+    c.lineCap = 'round';//设置
+    c.lineJoin = 'round';
+    c.beginPath(); //开始一个新路径
+    //小于20度时lineJoin会变成斜切，原因不是因为角度，而是斜接后长度超过10*linewidth
+    c.moveTo(100, 170); 
+    c.lineTo(200, 200);
+    c.setLineDash([18,3,3,3])
+    c.lineTo(100, 200);
+    c.strokeStyle = "#ccc";
+    c.fillStyle = "#008";
+    c.closePath();
+
+    c.fill();
+    c.stroke();
+  </script>
+</p>

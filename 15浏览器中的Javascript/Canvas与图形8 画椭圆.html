@@ -1,0 +1,27 @@
+<canvas id="myCanvas" width="1600" height="600"></canvas>
+<script>
+  let canvas = document.getElementById("myCanvas");
+  let c = canvas.getContext("2d");
+  c.setLineDash([]);
+  c.beginPath();
+  c.strokeStyle = "#ccc";
+  c.lineWidth = 5;
+  c.stroke();
+  //x,y,半径,起始角度，终止角度，顺时针0/逆时针1
+  c.ellipse(75, 75, 50, 75, (45 * Math.PI) / 180, 0, 2 * Math.PI);
+  c.stroke();
+
+  // c.beginPath();
+  c.setLineDash([5]);
+  c.moveTo(0, 150); //开始一个字路径，起点(100，100)
+  c.lineTo(150, 0); //用线段连接点(100，100)和(200,200)
+  c.closePath(); //闭合路径
+  c.stroke();
+
+  //用beginPath可以开始一个新路径，再次定义strokeStyle然后stroke不会影响旧的路径
+  c.beginPath();
+  c.moveTo(70, 75); //开始一个字路径，起点(100，100)
+  c.lineTo(80, 75); //用线段连接点(100，100)和(200,200)
+  c.strokeStyle = "#f84c15";
+  c.stroke();
+</script>

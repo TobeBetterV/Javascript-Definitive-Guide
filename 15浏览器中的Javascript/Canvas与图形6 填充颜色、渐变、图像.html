@@ -1,0 +1,65 @@
+<canvas id="myCanvas" width="1600" height="600"></canvas>
+<script>
+  let canvas = document.getElementById("myCanvas");
+  let c = canvas.getContext("2d");
+  c.lineWidth = 10;
+  c.lineCap = "round"; //设置
+  c.lineJoin = "round";
+  c.beginPath(); //开始一个新路径
+  //小于20度时lineJoin会变成斜切，原因不是因为角度，而是斜接后长度超过10*linewidth
+  c.moveTo(100, 100);
+  c.lineTo(500, 100);
+  c.lineTo(500, 500);
+  c.setLineDash([18, 3, 3, 3]);
+  c.lineTo(100, 500);
+  c.lineTo(100, 100);
+  // c.strokeStyle = "#ccc";
+  // c.fillStyle = "#008";
+  c.closePath();
+
+  //线性渐变
+  let bgfadeLinear = c.createLinearGradient(0, 0, canvas.width, canvas.height);
+  bgfadeLinear.addColorStop(0.0, "#27364c");
+  bgfadeLinear.addColorStop(1.0, "#e8362e");
+
+  c.fillStyle = bgfadeLinear;
+  c.fill();
+  c.stroke();
+
+  //圆心渐变
+  let bgfadeRadial = c.createRadialGradient(800, 300, 50, 800, 300, 100);
+  bgfadeRadial.addColorStop(0.0, "rgba(111, 55, 65,.9)");
+  bgfadeRadial.addColorStop(0.7, "rgba(188, 171, 117,.5)");
+  bgfadeRadial.addColorStop(1.0, "rgba(74, 110, 220,.5)");
+
+  c.fillStyle = bgfadeRadial;
+  c.beginPath(); //开始一个新路径
+  //小于20度时lineJoin会变成斜切，原因不是因为角度，而是斜接后长度超过10*linewidth
+  c.moveTo(600, 100);
+  c.lineTo(1000, 100);
+  c.lineTo(1000, 500);
+  c.setLineDash([18, 3, 3, 3]);
+  c.lineTo(600, 500);
+  c.lineTo(600, 100);
+  c.fill();
+  c.stroke();
+
+  //图片
+  var img = new Image();
+  img.src = "https://static.taitopia.cn/img/login_alpha_zh.png";
+  img.onload = function () {
+    var pattern = c.createPattern(img, "repeat");
+    c.fillStyle = pattern;
+    c.beginPath(); //开始一个新路径
+    //小于20度时lineJoin会变成斜切，原因不是因为角度，而是斜接后长度超过10*linewidth
+    c.moveTo(1100, 100);
+    c.lineTo(1500, 100);
+    c.lineTo(1500, 500);
+    c.setLineDash([18, 3, 3, 3]);
+    c.lineTo(1100, 500);
+    c.lineTo(1100, 100);
+    c.closePath()
+    c.fill();
+    c.stroke();
+  };
+</script>
